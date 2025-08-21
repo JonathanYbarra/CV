@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,20 +10,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- html2pdf.js library for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
+
         /* A simple style for printing and PDF generation */
         @media print {
             body {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
+
             .no-print {
                 display: none;
             }
+
             .printable-area {
                 box-shadow: none;
                 margin: 0;
@@ -32,14 +38,21 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-100 p-4 sm:p-6 lg:p-8">
     <!-- Main container for relative positioning -->
     <div class="max-w-4xl w-full mx-auto relative md:flex md:flex-col md:gap-5">
         <!-- Download Button Navigation - Absolutely positioned -->
-        <div class="no-print lg:absolute lg:top-0 lg:right-0 mt-8 mr-8 sm:mt-12 sm:mr-12 z-10" >
-            <button id="download-cv" class="inline-flex items-center bg-teal-600 text-white font-semibold py-2 px-5 rounded-lg shadow-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-300 ease-in-out">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                <span>Descargar CV</span>
+        <div class="no-print absolute top-0 right-0 mt-8 mr-8 sm:mt-12 sm:mr-12 z-10">
+            <button id="download-cv"
+                class="inline-flex items-center bg-teal-600 text-white font-semibold py-2 pl-2 sm:px-5 rounded-lg shadow-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-300 ease-in-out">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span class="hidden sm:inline">Descargar CV</span>
             </button>
         </div>
 
@@ -48,31 +61,68 @@
             <div class="p-8 sm:p-12">
                 <!-- Header Section -->
                 <header class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left">
-                    <img src="https://placehold.co/128x128/E2E8F0/4A5568?text=JY" alt="Foto de perfil de Jonathan Ybarra" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-gray-200 shadow-md">
+                    <img src="https://placehold.co/128x128/E2E8F0/4A5568?text=JY"
+                        alt="Foto de perfil de Jonathan Ybarra"
+                        class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-gray-200 shadow-md">
                     <div class="sm:ml-8 mt-4 sm:mt-0 flex-grow">
                         <h1 class="text-4xl sm:text-5xl font-bold text-gray-800">Jonathan Ybarra</h1>
                         <h2 class="text-xl sm:text-2xl font-semibold text-teal-600 mt-1">Full-Stack Developer</h2>
                         <div class="mt-4 flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-3 text-gray-600">
-                            <a href="mailto:jonatha.ybarra@gmail.com" class="flex items-center hover:text-teal-600 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <a href="mailto:jonatha.ybarra@gmail.com"
+                                class="flex items-center hover:text-teal-600 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="mr-2">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                    </path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
                                 jonatha.ybarra@gmail.com
                             </a>
                             <span class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="mr-2">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                    </path>
+                                </svg>
                                 11 55 13 29 58
                             </span>
                             <span class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                 Morón, Buenos Aires, Argentina
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="mr-2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                Morón, Buenos Aires, Argentina
                             </span>
                         </div>
-                         <div class="mt-4 flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-3 text-gray-600">
-                            <a href="https://www.linkedin.com/in/jonodev" target="_blank" class="flex items-center hover:text-teal-600 transition-colors">
-                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        <div class="mt-4 flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-3 text-gray-600">
+                            <a href="https://www.linkedin.com/in/jonodev" target="_blank"
+                                class="flex items-center hover:text-teal-600 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="mr-2">
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                    </path>
+                                    <rect x="2" y="9" width="4" height="12"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
                                 in/jonodev
                             </a>
-                            <a href="https://github.com/JonathanYbarra" target="_blank" class="flex items-center hover:text-teal-600 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <a href="https://github.com/JonathanYbarra" target="_blank"
+                                class="flex items-center hover:text-teal-600 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="mr-2">
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                    </path>
+                                </svg>
                                 JonathanYbarra
                             </a>
                         </div>
@@ -85,58 +135,89 @@
                 <main>
                     <!-- Professional Summary -->
                     <section>
-                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Resumen Profesional</h3>
+                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Resumen
+                            Profesional</h3>
                         <p class="text-gray-700 leading-relaxed">
-                            Desarrollador Full-Stack con +5 años de experiencia creando aplicaciones web escalables. Experto en el ecosistema JavaScript/TypeScript (React, Node.js, Nest.js) y en la construcción de arquitecturas de microservicios en la nube (AWS). Me especializo en definir arquitecturas robustas, modernizar sistemas y optimizar el rendimiento, guiando a equipos técnicos hacia soluciones de alta calidad.
+                            Desarrollador Full-Stack con +5 años de experiencia creando aplicaciones web escalables.
+                            Enfocado en el ecosistema JavaScript/TypeScript (React, Node.js, Nest.js) y en la
+                            construcción de arquitecturas de microservicios en la nube (AWS).
                         </p>
                     </section>
 
                     <!-- Skills Section -->
                     <section class="mt-8">
-                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Tecnologías y Habilidades</h3>
+                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Tecnologías y
+                            Habilidades</h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">TypeScript</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">React.js</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Next.js</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Redux</span>
-                             <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Tanstack</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Node.js</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Nest.js</span>
-                            <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">HTML5</span>
-                            <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">CSS3/Sass</span>
-                            <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Material UI</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">PostgreSQL</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">AuroraDB</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">MongoDB</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Redis</span>
-                            <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">AWS (API Gateway, Elastic Beanstalk)</span>
-                            <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Docker</span>
-                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Git</span>
-                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Scrum</span>
-                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">JIRA</span>
+                            <span
+                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
+                            <span
+                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">TypeScript</span>
+                            <span
+                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">React.js</span>
+                            <span
+                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Next.js</span>
+                            <span
+                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Redux</span>
+                            <span
+                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Tanstack</span>
+                            <span
+                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Node.js</span>
+                            <span
+                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Nest.js</span>
+                            <span
+                                class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">HTML5</span>
+                            <span
+                                class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">CSS3/Sass</span>
+                            <span
+                                class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Material
+                                UI</span>
+                            <span
+                                class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">PostgreSQL</span>
+                            <span
+                                class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">AuroraDB</span>
+                            <span
+                                class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">MongoDB</span>
+                            <span
+                                class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Redis</span>
+                            <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">AWS (API
+                                Gateway, Elastic Beanstalk)</span>
+                            <span
+                                class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Docker</span>
+                            <span
+                                class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Git</span>
+                            <span
+                                class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Scrum</span>
+                            <span
+                                class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">JIRA</span>
                         </div>
                     </section>
 
                     <!-- Work Experience -->
                     <section class="mt-8">
-                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Experiencia Laboral</h3>
+                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Experiencia
+                            Laboral</h3>
                         <div class="space-y-8">
                             <!-- Job 1 -->
                             <div class="job-item">
                                 <div class="flex justify-between items-baseline">
-                                    <h4 class="text-lg font-bold text-gray-900">Referente Técnico Full-Stack</h4>
+                                    <h4 class="text-lg font-bold text-gray-900">Full-Stack Developer</h4>
                                     <p class="text-sm font-medium text-gray-600">Abril 2024 - Presente</p>
                                 </div>
                                 <p class="text-md font-semibold text-gray-700">Ataway (para Cencosud S.A)</p>
                                 <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Mentoría activa y revisiones de código para desarrolladores Trainee, Junior y Semi-Senior.</li>
-                                    <li>Análisis y definición de requerimientos funcionales y técnicos a nivel regional.</li>
+                                    <li>Mentoría activa y revisiones de código para desarrolladores Trainee, Junior y
+                                        Semi-Senior.</li>
+                                    <li>Análisis y definición de requerimientos funcionales y técnicos a nivel regional.
+                                    </li>
                                     <li>Desarrollo end-to-end de funcionalidades, desde base de datos hasta la UI.</li>
-                                    <li>Configuración y optimización de endpoints en AWS API Gateway y gestión de rutas.</li>
-                                    <li>Modernización y refactorización de módulos legacy para mejorar rendimiento y mantenibilidad.</li>
+                                    <li>Configuración y optimización de endpoints en AWS API Gateway y gestión de rutas.
+                                    </li>
+                                    <li>Modernización y refactorización de módulos legacy para mejorar rendimiento y
+                                        mantenibilidad.</li>
                                 </ul>
-                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React, TypeScript, Nest.js, Tanstack, Context API, AuroraDB, AWS, Sequelize.</p>
+                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React, TypeScript,
+                                    Nest.js, Tanstack, Context API, AuroraDB, AWS, Sequelize.</p>
                             </div>
                             <!-- Job 2 -->
                             <div class="job-item">
@@ -146,13 +227,16 @@
                                 </div>
                                 <p class="text-md font-semibold text-gray-700">ESolutions</p>
                                 <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Acompañamiento técnico del equipo, evaluación de tecnologías y desarrollo de microservicios con Nest.js.</li>
+                                    <li>Acompañamiento técnico del equipo, evaluación de tecnologías y desarrollo de
+                                        microservicios con Nest.js.</li>
                                     <li>Personalización de productos para clientes clave como Movistar y Claro.</li>
-                                    <li>Definición de arquitectura, patrones de diseño e infraestructura para nuevos proyectos.</li>
+                                    <li>Definición de arquitectura, patrones de diseño e infraestructura para nuevos
+                                        proyectos.</li>
                                     <li>Gestión de tareas y planificación de sprints utilizando JIRA.</li>
                                     <li>Despliegue de aplicaciones en servidores WebLogic.</li>
                                 </ul>
-                                 <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> Next.js, TypeScript, React, Redux, Tanstack, Nest.js, MongoDB, Redis, PostgreSQL, Socket.io, Docker.</p>
+                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> Next.js, TypeScript,
+                                    React, Redux, Tanstack, Nest.js, MongoDB, Redis, PostgreSQL, Socket.io, Docker.</p>
                             </div>
                             <!-- Job 3 -->
                             <div class="job-item">
@@ -162,42 +246,54 @@
                                 </div>
                                 <p class="text-md font-semibold text-gray-700">Technisys S.A</p>
                                 <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Desarrollo de componentes reutilizables en Storybook y su integración en el producto final.</li>
-                                    <li>Implementación de estilos responsivos, corrección de errores y creación de pruebas unitarias.</li>
-                                    <li>Aplicación de la metodología Atomic Design en la construcción de un sistema de diseño.</li>
+                                    <li>Desarrollo de componentes reutilizables en Storybook y su integración en el
+                                        producto final.</li>
+                                    <li>Implementación de estilos responsivos, corrección de errores y creación de
+                                        pruebas unitarias.</li>
+                                    <li>Aplicación de la metodología Atomic Design en la construcción de un sistema de
+                                        diseño.</li>
                                     <li>Colaboración activa mediante pair programming y revisiones de código.</li>
                                 </ul>
-                                 <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React, TypeScript, Sass, CSS Modules, Redux, Context API, Docker.</p>
+                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React, TypeScript, Sass,
+                                    CSS Modules, Redux, Context API, Docker.</p>
                             </div>
-                             <!-- Job 4 -->
+                            <!-- Job 4 -->
                             <div class="job-item">
                                 <div class="flex justify-between items-baseline">
                                     <h4 class="text-lg font-bold text-gray-900">Full-Stack Developer</h4>
                                     <p class="text-sm font-medium text-gray-600">Diciembre 2019 - Febrero 2021</p>
                                 </div>
-                                <p class="text-md font-semibold text-gray-700">CIDIA (Centro de Investigación de Informática Aplicada)</p>
+                                <p class="text-md font-semibold text-gray-700">CIDIA (Centro de Investigación de
+                                    Informática Aplicada)</p>
                                 <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Desarrollo de un proyecto universitario desde cero según especificaciones del cliente.</li>
-                                    <li>Implementación de funcionalidades, diseños de escritorio y responsivos, y consumo de APIs.</li>
-                                    <li>Colaboración en la construcción de endpoints y consultas a bases de datos relacionales y no relacionales.</li>
+                                    <li>Desarrollo de un proyecto universitario desde cero según especificaciones del
+                                        cliente.</li>
+                                    <li>Implementación de funcionalidades, diseños de escritorio y responsivos, y
+                                        consumo de APIs.</li>
+                                    <li>Colaboración en la construcción de endpoints y consultas a bases de datos
+                                        relacionales y no relacionales.</li>
                                 </ul>
-                                 <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React.js, Node.js, PostgreSQL, MongoDB, Sequelize, Materialize.</p>
+                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React.js, Node.js,
+                                    PostgreSQL, MongoDB, Sequelize, Materialize.</p>
                             </div>
                         </div>
                     </section>
 
                     <!-- Education -->
                     <section class="mt-8">
-                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Formación y Certificaciones</h3>
-                         <div class="space-y-4">
+                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Formación y
+                            Certificaciones</h3>
+                        <div class="space-y-4">
                             <div>
-                                <h4 class="text-lg font-bold text-gray-900">Tecnicatura Universitaria en Programación</h4>
+                                <h4 class="text-lg font-bold text-gray-900">Tecnicatura Universitaria en Programación
+                                </h4>
                                 <div class="flex justify-between items-baseline">
-                                    <p class="text-md font-semibold text-gray-700">Universidad de Hurlingham (UNAHUR)</p>
+                                    <p class="text-md font-semibold text-gray-700">Universidad de Hurlingham (UNAHUR)
+                                    </p>
                                     <p class="text-sm font-medium text-gray-600">2017 - Actualidad</p>
                                 </div>
                             </div>
-                             <div>
+                            <div>
                                 <h4 class="text-lg font-bold text-gray-900">Certificaciones</h4>
                                 <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
                                     <li>Oracle Cloud Infrastructure 2025 Certified AI Foundations</li>
@@ -210,25 +306,26 @@
             </div>
         </div>
     </div>
-    
+
     <script>
         // Script to handle the PDF download functionality
         document.getElementById('download-cv').addEventListener('click', function () {
             // Get the element to convert to PDF
             const element = document.getElementById('cv-content');
-            
+
             // Options for html2pdf
             const opt = {
-              margin:       0.5,
-              filename:     'CV_Jonathan_Ybarra.pdf',
-              image:        { type: 'jpeg', quality: 0.98 },
-              html2canvas:  { scale: 2, useCORS: true },
-              jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                margin: 0.5,
+                filename: 'CV_Jonathan_Ybarra.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
             };
-            
+
             // Generate the PDF from the element
             html2pdf().from(element).set(opt).save();
         });
     </script>
 </body>
+
 </html>
