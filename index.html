@@ -5,584 +5,1435 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Jonathan Ybarra</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- html2pdf.js library for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
-        xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        /* Custom Reset and Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        @media print {
-            body {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
+        :root {
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --accent: #0d9488;
+            --accent-hover: #0f766e;
+            --accent-light: #f0fdfa;
+            --border: #e2e8f0;
+            --badge-bg: #f1f5f9;
+            --badge-text: #334155;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --font: 'Plus Jakarta Sans', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-            .no-print {
+        [data-theme="dark"] {
+            --bg-body: #030712;
+            --bg-card: #0b0f19;
+            --text-primary: #f9fafb;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent: #14b8a6;
+            --accent-hover: #2dd4bf;
+            --accent-light: #115e59;
+            --border: #1e293b;
+            --badge-bg: #1e293b;
+            --badge-text: #cbd5e1;
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: var(--font);
+            background-color: var(--bg-body);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(13, 148, 136, 0.03) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.03) 0px, transparent 50%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 0;
+            transition: var(--transition);
+        }
+
+        /* Glassmorphism Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(11, 15, 25, 0.7);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent) 0%, #6366f1 100%);
+            color: white;
+            font-weight: 800;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Segmented Language Selector Toggle */
+        .toggle-group {
+            display: inline-flex;
+            background: var(--bg-body);
+            border: 1px solid var(--border);
+            padding: 2px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .toggle-btn {
+            border: none;
+            background: transparent;
+            padding: 5px 12px;
+            border-radius: 18px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .toggle-btn.active {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        /* Icon Button */
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .icon-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .sun-icon {
+            display: none;
+        }
+
+        [data-theme="dark"] .sun-icon {
+            display: block;
+        }
+
+        [data-theme="dark"] .moon-icon {
+            display: none;
+        }
+
+        /* Primary Action Button */
+        .btn-primary {
+            border: none;
+            background: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(13, 148, 136, 0.15);
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(13, 148, 136, 0.25);
+        }
+
+        /* Main Content Sheet Wrapper */
+        .cv-wrapper {
+            max-width: 1200px;
+            width: 100%;
+            margin: 100px auto 40px auto;
+            padding: 0 1.5rem;
+        }
+
+        .cv-sheet {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* CV Header Block */
+        .cv-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2rem;
+        }
+
+        .header-main {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .avatar-badge {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, #6366f1 100%);
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(13, 148, 136, 0.15);
+            transition: var(--transition);
+            user-select: none;
+        }
+
+        .avatar-badge:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .header-text .subtitle {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-top: 0.25rem;
+        }
+
+        /* Contact Details Grid */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item svg {
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        /* CV Layout Grid */
+        .cv-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+        }
+
+        /* Sidebar Sections styling */
+        .cv-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        /* Main Section Container */
+        .cv-main {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .section h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section h2::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Professional Summary */
+        .summary-section p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Work Experience Timeline */
+        .experience-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .job-card {
+            position: relative;
+            padding-left: 2rem;
+            transition: var(--transition);
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2.5px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .job-card:hover::before {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .job-title-group h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .client-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background-color: var(--accent-light);
+            color: var(--accent);
+            margin-left: 6px;
+            vertical-align: middle;
+            border: 1px solid rgba(13, 148, 136, 0.15);
+            transition: var(--transition);
+        }
+
+        .company {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 0.1rem;
+        }
+
+        .job-date {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            background: var(--badge-bg);
+            padding: 2px 8px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .job-details {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .job-details li {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .job-details li::before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .job-stack {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: var(--bg-body);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            display: inline-block;
+        }
+
+        /* Skills Filtering Controls (Web Only) */
+        .skills-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .filter-btn.active {
+            background: var(--accent-light);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Skills badges */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .skill-badge:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(13, 148, 136, 0.08);
+        }
+
+        .skill-badge.skill-hidden {
+            display: none !important;
+        }
+
+        /* Education & Certs details */
+        .education-item {
+            margin-bottom: 1rem;
+        }
+
+        .education-item h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .education-item .institution {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.1rem;
+        }
+
+        .certifications-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .certifications-list li {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .certifications-list li::before {
+            content: "✓";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Responsive Layout Overrides */
+        @media (max-width: 850px) {
+            .cv-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .cv-sidebar {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-container {
+                padding: 0 1rem;
+            }
+            .logo-name {
                 display: none;
             }
+            .cv-sheet {
+                padding: 1.5rem;
+                margin-top: 80px;
+                border-radius: 12px;
+            }
+            .cv-header {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            .header-main {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .contact-info {
+                grid-template-columns: 1fr;
+                width: 100%;
+                max-width: 320px;
+            }
+            .contact-item {
+                justify-content: center;
+            }
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .job-header .job-date {
+                align-self: flex-start;
+            }
+        }
 
-            .printable-area {
-                box-shadow: none;
-                margin: 0;
-                max-width: 100%;
-                border-radius: 0;
+        /* ATS-Optimized Print Stylesheet */
+        @media print {
+            @page {
+                size: letter;
+                margin: 0.6in;
+            }
+            body {
+                background: #ffffff !important;
+                background-image: none !important;
+                color: #111111 !important;
+                font-family: 'Inter', Arial, sans-serif !important;
+                font-size: 10pt !important;
+                line-height: 1.4 !important;
+                padding: 0 !important;
+            }
+            .no-print, 
+            #theme-toggle, 
+            #download-cv, 
+            .skills-filter,
+            .avatar-badge,
+            .navbar {
+                display: none !important;
+            }
+            .cv-wrapper {
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+            .cv-sheet {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                background: transparent !important;
+                border-radius: 0 !important;
+            }
+            .cv-header {
+                margin-bottom: 20px !important;
+                padding-bottom: 10px !important;
+                border-bottom: 1.5pt solid #222222 !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 10px !important;
+            }
+            .header-main {
+                gap: 0 !important;
+            }
+            .header-text h1 {
+                font-size: 22pt !important;
+                font-weight: 700 !important;
+                color: #111111 !important;
+            }
+            .header-text .subtitle {
+                font-size: 13pt !important;
+                font-weight: 600 !important;
+                color: #333333 !important;
+                margin-top: 2px !important;
+            }
+            .contact-info {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                column-gap: 15px !important;
+                row-gap: 5px !important;
+                margin-top: 5px !important;
+                font-size: 9pt !important;
+                color: #222222 !important;
+                width: 100% !important;
+                grid-template-columns: none !important;
+            }
+            .contact-item {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+            }
+            .contact-item svg {
+                display: none !important; /* Hide SVGs on print to keep layout ultra-clean for parsers */
+            }
+            .cv-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 0 !important;
+            }
+            .cv-main {
+                order: 1 !important;
+                width: 100% !important;
+            }
+            .cv-sidebar {
+                order: 2 !important;
+                width: 100% !important;
+                margin-top: 15px !important;
+                gap: 15px !important;
+            }
+            .section {
+                margin-bottom: 18px !important;
+            }
+            .section h2 {
+                font-size: 11pt !important;
+                font-weight: 700 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.5px !important;
+                border-bottom: 1pt solid #222222 !important;
+                padding-bottom: 3px !important;
+                margin-bottom: 8px !important;
+                color: #111111 !important;
+            }
+            .section h2::after {
+                display: none !important;
+            }
+            .job-card {
+                margin-bottom: 12px !important;
+                padding-left: 0 !important;
+                page-break-inside: avoid !important;
+            }
+            .job-card::before {
+                display: none !important;
+            }
+            .job-header {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: baseline !important;
+                margin-bottom: 2px !important;
+            }
+            .job-title-group h3 {
+                font-size: 10.5pt !important;
+                font-weight: 700 !important;
+                color: #111111 !important;
+            }
+            .company {
+                font-size: 10pt !important;
+                font-weight: 600 !important;
+                color: #333333 !important;
+            }
+            .client-tag {
+                background: transparent !important;
+                border: none !important;
+                color: #222222 !important;
+                font-weight: 700 !important;
+                padding: 0 !important;
+                font-size: 10.5pt !important;
+                margin-left: 4px !important;
+            }
+            .job-header .job-date {
+                font-size: 9pt !important;
+                color: #333333 !important;
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                font-weight: 500 !important;
+            }
+            .job-details {
+                margin-left: 15px !important;
+                margin-bottom: 4px !important;
+                list-style-type: disc !important;
+            }
+            .job-details li {
+                font-size: 9.5pt !important;
+                margin-bottom: 2px !important;
+                color: #222222 !important;
+                padding-left: 0 !important;
+            }
+            .job-details li::before {
+                display: none !important;
+            }
+            .job-stack {
+                font-size: 8.5pt !important;
+                color: #333333 !important;
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                margin-top: 2px !important;
+            }
+            .skills-list {
+                display: block !important;
+            }
+            .skill-badge {
+                display: inline-block !important;
+                background: transparent !important;
+                border: none !important;
+                color: #111111 !important;
+                padding: 0 !important;
+                margin-right: 10px !important;
+                margin-bottom: 4px !important;
+                font-size: 9.5pt !important;
+                font-weight: 500 !important;
+                transform: none !important;
+                box-shadow: none !important;
+            }
+            .skill-badge::after {
+                content: "," !important;
+            }
+            .skill-badge:last-child::after {
+                content: "" !important;
+            }
+            .certifications-list {
+                margin-left: 15px !important;
+                list-style-type: disc !important;
+            }
+            .certifications-list li {
+                font-size: 9.5pt !important;
+                margin-bottom: 2px !important;
+                color: #222222 !important;
+                padding-left: 0 !important;
+            }
+            .certifications-list li::before {
+                display: none !important;
+            }
+            .education-item {
+                margin-bottom: 6px !important;
+            }
+            .education-item h3 {
+                font-size: 10pt !important;
+                font-weight: 700 !important;
+                color: #111111 !important;
+            }
+            .education-item .institution {
+                font-size: 9.5pt !important;
+                color: #333333 !important;
             }
         }
     </style>
 </head>
 
-<body class="bg-gray-100 p-4 sm:p-6 lg:p-8">
-    <!-- Main container for relative positioning -->
-    <div class="max-w-4xl w-full mx-auto relative md:flex md:flex-col md:gap-5">
-        <!-- Language selector and Download Button - No print -->
-        <div class="no-print absolute top-0 right-0 mt-8 mr-8 sm:mt-12 sm:mr-12 z-10 flex flex-col items-end gap-3">
-            <label for="lang-select" class="sr-only block">Idioma / Language</label>
-            <select id="lang-select"
-                class="block rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 cursor-pointer mb-2">
-                <option value="en" selected>English</option>
-                <option value="es">Español</option>
-            </select>
-            <button id="download-cv"
-                class="block w-fit bg-teal-600 text-white font-semibold py-2 pl-2 sm:px-5 rounded-lg shadow-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-300 ease-in-out">
-                <span class="inline-flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    <span id="btn-download-label" class="hidden sm:inline">Download CV</span>
-                </span>
-            </button>
+<body>
+    <!-- Top Glassmorphism Navigation Bar -->
+    <header class="no-print navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <span class="logo-badge">JY</span>
+                <span class="logo-name">Jonathan Ybarra</span>
+            </div>
+            <div class="nav-controls">
+                <!-- Segmented Control Language Switcher -->
+                <div class="toggle-group lang-toggle">
+                    <button type="button" class="toggle-btn active" data-lang="en">EN</button>
+                    <button type="button" class="toggle-btn" data-lang="es">ES</button>
+                </div>
+                <!-- Theme Switcher -->
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+                </button>
+                <!-- Download PDF Trigger -->
+                <button id="download-cv" class="btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="btn-download-label">Download PDF</span>
+                </button>
+            </div>
         </div>
+    </header>
 
-        <!-- CV Container -->
-        <div id="cv-content" class="printable-area bg-white shadow-2xl rounded-xl w-full">
-            <!-- English version (default) -->
-            <div id="content-en" class="p-8 sm:p-12">
-                <header class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left">
-                    <img src="https://placehold.co/128x128/E2E8F0/4A5568?text=JY"
-                        alt="Jonathan Ybarra profile photo"
-                        class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-gray-200 shadow-md">
-                    <div class="sm:ml-8 mt-4 sm:mt-0 flex-grow">
-                        <h1 class="text-4xl sm:text-5xl font-bold text-gray-800">Jonathan Ybarra</h1>
-                        <h2 class="text-xl sm:text-2xl font-semibold text-teal-600 mt-1">Frontend Developer</h2>
-                        <div class="mt-4 flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-3 text-gray-600">
-                            <a href="mailto:jonatha.ybarra@gmail.com"
-                                class="flex items-center hover:text-teal-600 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="mr-2">
-                                    <path
-                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                    </path>
-                                    <polyline points="22,6 12,13 2,6"></polyline>
-                                </svg>
-                                jonatha.ybarra@gmail.com
-                            </a>
-                            <span class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="mr-2">
-                                    <path
-                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                    </path>
-                                </svg>
-                                11 55 13 29 58
-                            </span>
-                            <span class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="mr-2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                                Morón, Buenos Aires, Argentina
-                            </span>
+    <!-- Floating Sheet CV Wrapper -->
+    <div class="cv-wrapper">
+        <div id="cv-content" class="cv-sheet">
+            
+            <!-- ENGLISH VERSION -->
+            <div id="content-en">
+                <!-- Header Block -->
+                <header class="cv-header">
+                    <div class="header-main">
+                        <div class="avatar-badge">JY</div>
+                        <div class="header-text">
+                            <h1>Jonathan Ybarra</h1>
+                            <p class="subtitle">Frontend Developer</p>
                         </div>
-                        <div class="mt-4 flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-3 text-gray-600">
-                            <a href="https://www.linkedin.com/in/jonodev" target="_blank"
-                                class="flex items-center hover:text-teal-600 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="mr-2">
-                                    <path
-                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                    </path>
-                                    <rect x="2" y="9" width="4" height="12"></rect>
-                                    <circle cx="4" cy="4" r="2"></circle>
-                                </svg>
-                                in/jonodev
-                            </a>
-                            <a href="https://github.com/JonathanYbarra" target="_blank"
-                                class="flex items-center hover:text-teal-600 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="mr-2">
-                                    <path
-                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                    </path>
-                                </svg>
-                                JonathanYbarra
-                            </a>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <a href="mailto:jonatha.ybarra@gmail.com">jonatha.ybarra@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <span>11 5513 2958</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <span>Morón, Buenos Aires, Argentina</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            <a href="https://www.linkedin.com/in/jonodev" target="_blank">in/jonodev</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <a href="https://github.com/JonathanYbarra" target="_blank">JonathanYbarra</a>
                         </div>
                     </div>
                 </header>
 
-                <hr class="my-8 border-t border-gray-200">
+                <!-- Grid Layout -->
+                <div class="cv-grid">
+                    
+                    <!-- Sidebar Column -->
+                    <aside class="cv-sidebar">
+                        <!-- Skills Section -->
+                        <section class="section">
+                            <h2>Skills & Technologies</h2>
+                            <div class="skills-filter no-print">
+                                <button type="button" class="filter-btn active" data-filter="all">All</button>
+                                <button type="button" class="filter-btn" data-filter="frontend">Frontend</button>
+                                <button type="button" class="filter-btn" data-filter="backend">Backend</button>
+                                <button type="button" class="filter-btn" data-filter="cloud">Cloud/Tools</button>
+                            </div>
+                            <div class="skills-list">
+                                <span class="skill-badge" data-category="frontend">JavaScript</span>
+                                <span class="skill-badge" data-category="frontend">TypeScript</span>
+                                <span class="skill-badge" data-category="frontend">React.js</span>
+                                <span class="skill-badge" data-category="frontend">Next.js</span>
+                                <span class="skill-badge" data-category="frontend">Redux</span>
+                                <span class="skill-badge" data-category="frontend">Zustand</span>
+                                <span class="skill-badge" data-category="frontend">Storybook</span>
+                                <span class="skill-badge" data-category="frontend">StyledComponents</span>
+                                <span class="skill-badge" data-category="frontend">Tanstack</span>
+                                <span class="skill-badge" data-category="backend">Node.js</span>
+                                <span class="skill-badge" data-category="backend">Nest.js</span>
+                                <span class="skill-badge" data-category="frontend">HTML5 / CSS3</span>
+                                <span class="skill-badge" data-category="frontend">Sass / CSS Modules</span>
+                                <span class="skill-badge" data-category="frontend">Material UI</span>
+                                <span class="skill-badge" data-category="backend">PostgreSQL</span>
+                                <span class="skill-badge" data-category="backend">AuroraDB</span>
+                                <span class="skill-badge" data-category="backend">MongoDB</span>
+                                <span class="skill-badge" data-category="backend">Redis</span>
+                                <span class="skill-badge" data-category="backend">Sequelize</span>
+                                <span class="skill-badge" data-category="backend">Socket.io</span>
+                                <span class="skill-badge" data-category="cloud">AWS API Gateway</span>
+                                <span class="skill-badge" data-category="cloud">AWS Elastic Beanstalk</span>
+                                <span class="skill-badge" data-category="cloud">Docker</span>
+                                <span class="skill-badge" data-category="cloud">Git</span>
+                                <span class="skill-badge" data-category="cloud">Scrum</span>
+                                <span class="skill-badge" data-category="cloud">JIRA</span>
+                            </div>
+                        </section>
 
-                <main>
-                    <section>
-                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Professional Summary</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Frontend Developer with +6 years of experience building scalable web applications.
-                            Focused on the JavaScript/TypeScript ecosystem (React, Node.js, Nest.js) and on
-                            building microservices architectures in the cloud (AWS).
-                        </p>
-                    </section>
+                        <!-- Education Section -->
+                        <section class="section">
+                            <h2>Education</h2>
+                            <div class="education-item">
+                                <h3>Univ. Technical Degree in Programming</h3>
+                                <p class="institution">Universidad de Hurlingham (UNAHUR)</p>
+                            </div>
+                        </section>
 
-                    <section class="mt-8">
-                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Technologies and Skills</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">TypeScript</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">React.js</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Next.js</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Redux</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Tanstack</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Node.js</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Storybook</span>
-                            <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Nest.js</span>
-                            <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">HTML</span>
-                            <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">CSS/Sass</span>
-                            <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Material UI</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">PostgreSQL</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">AuroraDB</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">MongoDB</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Redis</span>
-                            <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">AWS (API Gateway, Elastic Beanstalk)</span>
-                            <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Docker</span>
-                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Git</span>
-                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Scrum</span>
-                            <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">JIRA</span>
-                        </div>
-                    </section>
+                        <!-- Certifications Section -->
+                        <section class="section">
+                            <h2>Certifications</h2>
+                            <ul class="certifications-list">
+                                <li>Oracle Cloud Infrastructure 2025 AI Foundations</li>
+                                <li>Scrum Developer Certification</li>
+                            </ul>
+                        </section>
+                    </aside>
 
-                    <section class="mt-8">
-                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Work Experience</h3>
-                        <div class="space-y-8">
-                            <div class="job-item">
-                                <div class="flex justify-between items-baseline">
-                                    <h4 class="text-lg font-bold text-gray-900">Frontend Developer</h4>
-                                    <p class="text-sm font-medium text-gray-600">December 2025 - Present</p>
-                                </div>
-                                <p class="text-md font-semibold text-gray-700">Huenei IT Services</p>
-                                <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Maintenance and scalability of 6 frontend applications + shared component library.</li>
-                                    <li>Development of new features with a focus on scalable architecture and component reuse.</li>
-                                    <li>Design, creation and refactoring of components in Storybook to ensure visual consistency.</li>
-                                    <li>State management with Zustand in high-performance React/TypeScript applications.</li>
-                                </ul>
-                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React, TypeScript, Storybook, StyledComponents, Tanstack, Zustand.</p>
-                            </div>
-                            <div class="job-item">
-                                <div class="flex justify-between items-baseline">
-                                    <h4 class="text-lg font-bold text-gray-900">Full-Stack Developer</h4>
-                                    <p class="text-sm font-medium text-gray-600">April 2024 - December 2025</p>
-                                </div>
-                                <p class="text-md font-semibold text-gray-700">Ataway (for Cencosud S.A)</p>
-                                <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Active mentoring and code reviews for Trainee, Junior and Semi-Senior developers.</li>
-                                    <li>Analysis and definition of functional and technical requirements at regional level.</li>
-                                    <li>End-to-end development of features, from database to UI.</li>
-                                    <li>Configuration and optimization of endpoints in AWS API Gateway and route management.</li>
-                                    <li>Modernization and refactoring of legacy modules to improve performance and maintainability.</li>
-                                </ul>
-                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React, TypeScript, Nest.js, Tanstack, Context API, AuroraDB, AWS, Sequelize.</p>
-                            </div>
-                            <div class="job-item">
-                                <div class="flex justify-between items-baseline">
-                                    <h4 class="text-lg font-bold text-gray-900">Full-Stack Technical Lead</h4>
-                                    <p class="text-sm font-medium text-gray-600">August 2022 - March 2024</p>
-                                </div>
-                                <p class="text-md font-semibold text-gray-700">ESolutions</p>
-                                <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Technical support for the team, technology evaluation and microservices development with Nest.js.</li>
-                                    <li>Product customization for key clients such as Movistar and Claro.</li>
-                                    <li>Definition of architecture, design patterns and infrastructure for new projects.</li>
-                                    <li>Task management and sprint planning using JIRA.</li>
-                                    <li>Application deployment on WebLogic servers.</li>
-                                </ul>
-                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> Next.js, TypeScript, React, Redux, Tanstack, Nest.js, MongoDB, Redis, PostgreSQL, Socket.io, Docker.</p>
-                            </div>
-                            <div class="job-item">
-                                <div class="flex justify-between items-baseline">
-                                    <h4 class="text-lg font-bold text-gray-900">React Developer</h4>
-                                    <p class="text-sm font-medium text-gray-600">February 2021 - August 2022</p>
-                                </div>
-                                <p class="text-md font-semibold text-gray-700">Technisys S.A</p>
-                                <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Development of reusable components in Storybook and their integration into the final product.</li>
-                                    <li>Implementation of responsive styles, bug fixing and creation of unit tests.</li>
-                                    <li>Application of Atomic Design methodology in building a design system.</li>
-                                    <li>Active collaboration through pair programming and code reviews.</li>
-                                </ul>
-                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React, TypeScript, Sass, CSS Modules, Redux, Context API, Docker.</p>
-                            </div>
-                            <div class="job-item">
-                                <div class="flex justify-between items-baseline">
-                                    <h4 class="text-lg font-bold text-gray-900">Full-Stack Developer</h4>
-                                    <p class="text-sm font-medium text-gray-600">December 2019 - February 2021</p>
-                                </div>
-                                <p class="text-md font-semibold text-gray-700">CIDIA (Applied Computer Research Center)</p>
-                                <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Development of a university project from scratch according to client specifications.</li>
-                                    <li>Implementation of features, desktop and responsive designs, and API consumption.</li>
-                                    <li>Collaboration in building endpoints and queries to relational and non-relational databases.</li>
-                                </ul>
-                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React.js, Node.js, PostgreSQL, MongoDB, Sequelize, Materialize.</p>
-                            </div>
-                        </div>
-                    </section>
+                    <!-- Main content Column -->
+                    <main class="cv-main">
+                        <!-- Professional Summary -->
+                        <section class="section summary-section">
+                            <h2>Professional Summary</h2>
+                            <p>
+                                Frontend Developer with +6 years of experience building scalable web applications. Focused on the JavaScript/TypeScript ecosystem (React, Node.js, Nest.js) and on building microservices architectures in the cloud (AWS).
+                            </p>
+                        </section>
 
-                    <section class="mt-8">
-                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Education and Certifications</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <h4 class="text-lg font-bold text-gray-900">University Technical Degree in Programming</h4>
-                                <div class="flex justify-between items-baseline">
-                                    <p class="text-md font-semibold text-gray-700">Universidad de Hurlingham (UNAHUR)</p>
+                        <!-- Experience Section -->
+                        <section class="section">
+                            <h2>Work Experience</h2>
+                            <div class="experience-timeline">
+                                
+                                <!-- Job 1 -->
+                                <div class="job-card">
+                                    <div class="job-header">
+                                        <div class="job-title-group">
+                                            <h3>Frontend Developer <span class="client-tag">Client: GDM Seeds</span></h3>
+                                            <p class="company">Huenei IT Services</p>
+                                        </div>
+                                        <p class="job-date">Dec 2025 - Present</p>
+                                    </div>
+                                    <ul class="job-details">
+                                        <li>Maintenance and scalability of 6+ frontend biotechnology applications and a shared component library, standardizing UI consistency across platforms.</li>
+                                        <li>Developed a comprehensive web platform for agricultural biotechnology to manage biochemical assays, laboratory tests, and seed mass production workflows.</li>
+                                        <li>Integrated hardware systems (barcode/label printers, real-time sample monitoring devices, and automated data collection) to streamline lab operations.</li>
+                                        <li>Managed application state using Zustand in high-performance React/TypeScript applications and designed components in Storybook.</li>
+                                    </ul>
+                                    <p class="job-stack"><strong>Tech Stack:</strong> React, TypeScript, Storybook, StyledComponents, Tanstack, Zustand</p>
                                 </div>
+
+                                <!-- Job 2 -->
+                                <div class="job-card">
+                                    <div class="job-header">
+                                        <div class="job-title-group">
+                                            <h3>Full-Stack Developer</h3>
+                                            <p class="company">Ataway (for Cencosud S.A)</p>
+                                        </div>
+                                        <p class="job-date">Apr 2024 - Dec 2025</p>
+                                    </div>
+                                    <ul class="job-details">
+                                        <li>Active mentoring and code reviews for Trainee, Junior and Semi-Senior developers.</li>
+                                        <li>Analysis and definition of functional and technical requirements at regional level.</li>
+                                        <li>End-to-end development of features, from database to UI.</li>
+                                        <li>Configuration and optimization of endpoints in AWS API Gateway and route management.</li>
+                                        <li>Modernization and refactoring of legacy modules to improve performance and maintainability.</li>
+                                    </ul>
+                                    <p class="job-stack"><strong>Tech Stack:</strong> React, TypeScript, Nest.js, Tanstack, Context API, AuroraDB, AWS, Sequelize</p>
+                                </div>
+
+                                <!-- Job 3 -->
+                                <div class="job-card">
+                                    <div class="job-header">
+                                        <div class="job-title-group">
+                                            <h3>Full-Stack Technical Lead</h3>
+                                            <p class="company">ESolutions</p>
+                                        </div>
+                                        <p class="job-date">Aug 2022 - Mar 2024</p>
+                                    </div>
+                                    <ul class="job-details">
+                                        <li>Technical support for the team, technology evaluation and microservices development with Nest.js.</li>
+                                        <li>Product customization for key clients such as Movistar and Claro.</li>
+                                        <li>Definition of architecture, design patterns and infrastructure for new projects.</li>
+                                        <li>Task management and sprint planning using JIRA.</li>
+                                        <li>Application deployment on WebLogic servers.</li>
+                                    </ul>
+                                    <p class="job-stack"><strong>Tech Stack:</strong> Next.js, TypeScript, React, Redux, Tanstack, Nest.js, MongoDB, Redis, PostgreSQL, Socket.io, Docker</p>
+                                </div>
+
+                                <!-- Job 4 -->
+                                <div class="job-card">
+                                    <div class="job-header">
+                                        <div class="job-title-group">
+                                            <h3>React Developer</h3>
+                                            <p class="company">Technisys S.A</p>
+                                        </div>
+                                        <p class="job-date">Feb 2021 - Aug 2022</p>
+                                    </div>
+                                    <ul class="job-details">
+                                        <li>Development of reusable components in Storybook and their integration into the final product.</li>
+                                        <li>Implementation of responsive styles, bug fixing and creation of unit tests.</li>
+                                        <li>Application of Atomic Design methodology in building a design system.</li>
+                                        <li>Active collaboration through pair programming and code reviews.</li>
+                                    </ul>
+                                    <p class="job-stack"><strong>Tech Stack:</strong> React, TypeScript, Sass, CSS Modules, Redux, Context API, Docker</p>
+                                </div>
+
+                                <!-- Job 5 -->
+                                <div class="job-card">
+                                    <div class="job-header">
+                                        <div class="job-title-group">
+                                            <h3>Full-Stack Developer</h3>
+                                            <p class="company">CIDIA (Applied Computer Research Center)</p>
+                                        </div>
+                                        <p class="job-date">Dec 2019 - Feb 2021</p>
+                                    </div>
+                                    <ul class="job-details">
+                                        <li>Development of a university project from scratch according to client specifications.</li>
+                                        <li>Implementation of features, desktop and responsive designs, and API consumption.</li>
+                                        <li>Collaboration in building endpoints and queries to relational and non-relational databases.</li>
+                                    </ul>
+                                    <p class="job-stack"><strong>Tech Stack:</strong> React.js, Node.js, PostgreSQL, MongoDB, Sequelize, Materialize</p>
+                                </div>
+
                             </div>
-                            <div>
-                                <h4 class="text-lg font-bold text-gray-900">Certifications</h4>
-                                <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Oracle Cloud Infrastructure 2025 Certified AI Foundations</li>
-                                    <li>Scrum Developer Certification</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-                </main>
+                        </section>
+                    </main>
+                </div>
             </div>
 
-            <!-- Spanish version (unchanged wording) -->
-            <div id="content-es" class="hidden p-8 sm:p-12">
-                <!-- Header Section -->
-                <header class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left">
-                    <img src="https://placehold.co/128x128/E2E8F0/4A5568?text=JY"
-                        alt="Foto de perfil de Jonathan Ybarra"
-                        class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-gray-200 shadow-md">
-                    <div class="sm:ml-8 mt-4 sm:mt-0 flex-grow">
-                        <h1 class="text-4xl sm:text-5xl font-bold text-gray-800">Jonathan Ybarra</h1>
-                        <h2 class="text-xl sm:text-2xl font-semibold text-teal-600 mt-1">Frontend Developer</h2>
-                        <div class="mt-4 flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-3 text-gray-600">
-                            <a href="mailto:jonatha.ybarra@gmail.com"
-                                class="flex items-center hover:text-teal-600 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="mr-2">
-                                    <path
-                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                    </path>
-                                    <polyline points="22,6 12,13 2,6"></polyline>
-                                </svg>
-                                jonatha.ybarra@gmail.com
-                            </a>
-                            <span class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="mr-2">
-                                    <path
-                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                    </path>
-                                </svg>
-                                11 55 13 29 58
-                            </span>
-                            <span class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="mr-2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                                Morón, Buenos Aires, Argentina
-                            </span>
+            <!-- SPANISH VERSION -->
+            <div id="content-es" class="hidden">
+                <!-- Header Block -->
+                <header class="cv-header">
+                    <div class="header-main">
+                        <div class="avatar-badge">JY</div>
+                        <div class="header-text">
+                            <h1>Jonathan Ybarra</h1>
+                            <p class="subtitle">Frontend Developer</p>
                         </div>
-                        <div class="mt-4 flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-3 text-gray-600">
-                            <a href="https://www.linkedin.com/in/jonodev" target="_blank"
-                                class="flex items-center hover:text-teal-600 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="mr-2">
-                                    <path
-                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                    </path>
-                                    <rect x="2" y="9" width="4" height="12"></rect>
-                                    <circle cx="4" cy="4" r="2"></circle>
-                                </svg>
-                                in/jonodev
-                            </a>
-                            <a href="https://github.com/JonathanYbarra" target="_blank"
-                                class="flex items-center hover:text-teal-600 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="mr-2">
-                                    <path
-                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                    </path>
-                                </svg>
-                                JonathanYbarra
-                            </a>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <a href="mailto:jonatha.ybarra@gmail.com">jonatha.ybarra@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <span>11 5513 2958</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <span>Morón, Buenos Aires, Argentina</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            <a href="https://www.linkedin.com/in/jonodev" target="_blank">in/jonodev</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <a href="https://github.com/JonathanYbarra" target="_blank">JonathanYbarra</a>
                         </div>
                     </div>
                 </header>
 
-                <hr class="my-8 border-t border-gray-200">
+                <!-- Grid Layout -->
+                <div class="cv-grid">
+                    
+                    <!-- Sidebar Column -->
+                    <aside class="cv-sidebar">
+                        <!-- Skills Section -->
+                        <section class="section">
+                            <h2>Habilidades y Tecnologías</h2>
+                            <div class="skills-filter no-print">
+                                <button type="button" class="filter-btn active" data-filter="all">Todas</button>
+                                <button type="button" class="filter-btn" data-filter="frontend">Frontend</button>
+                                <button type="button" class="filter-btn" data-filter="backend">Backend</button>
+                                <button type="button" class="filter-btn" data-filter="cloud">Nube/Herramientas</button>
+                            </div>
+                            <div class="skills-list">
+                                <span class="skill-badge" data-category="frontend">JavaScript</span>
+                                <span class="skill-badge" data-category="frontend">TypeScript</span>
+                                <span class="skill-badge" data-category="frontend">React.js</span>
+                                <span class="skill-badge" data-category="frontend">Next.js</span>
+                                <span class="skill-badge" data-category="frontend">Redux</span>
+                                <span class="skill-badge" data-category="frontend">Zustand</span>
+                                <span class="skill-badge" data-category="frontend">Storybook</span>
+                                <span class="skill-badge" data-category="frontend">StyledComponents</span>
+                                <span class="skill-badge" data-category="frontend">Tanstack</span>
+                                <span class="skill-badge" data-category="backend">Node.js</span>
+                                <span class="skill-badge" data-category="backend">Nest.js</span>
+                                <span class="skill-badge" data-category="frontend">HTML5 / CSS3</span>
+                                <span class="skill-badge" data-category="frontend">Sass / CSS Modules</span>
+                                <span class="skill-badge" data-category="frontend">Material UI</span>
+                                <span class="skill-badge" data-category="backend">PostgreSQL</span>
+                                <span class="skill-badge" data-category="backend">AuroraDB</span>
+                                <span class="skill-badge" data-category="backend">MongoDB</span>
+                                <span class="skill-badge" data-category="backend">Redis</span>
+                                <span class="skill-badge" data-category="backend">Sequelize</span>
+                                <span class="skill-badge" data-category="backend">Socket.io</span>
+                                <span class="skill-badge" data-category="cloud">AWS API Gateway</span>
+                                <span class="skill-badge" data-category="cloud">AWS Elastic Beanstalk</span>
+                                <span class="skill-badge" data-category="cloud">Docker</span>
+                                <span class="skill-badge" data-category="cloud">Git</span>
+                                <span class="skill-badge" data-category="cloud">Scrum</span>
+                                <span class="skill-badge" data-category="cloud">JIRA</span>
+                            </div>
+                        </section>
 
-                <!-- Main Content -->
-                <main>
-                    <!-- Professional Summary -->
-                    <section>
-                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Resumen
-                            Profesional</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Desarrollador Frontend con +6 años de experiencia creando aplicaciones web escalables.
-                            Enfocado en el ecosistema JavaScript/TypeScript (React, Node.js, Nest.js) y en la
-                            construcción de arquitecturas de microservicios en la nube (AWS).
-                        </p>
-                    </section>
+                        <!-- Education Section -->
+                        <section class="section">
+                            <h2>Formación</h2>
+                            <div class="education-item">
+                                <h3>Tecnicatura Universitaria en Programación</h3>
+                                <p class="institution">Universidad de Hurlingham (UNAHUR)</p>
+                            </div>
+                        </section>
 
-                    <!-- Skills Section -->
-                    <section class="mt-8">
-                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Tecnologías y
-                            Habilidades</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span
-                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
-                            <span
-                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">TypeScript</span>
-                            <span
-                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">React.js</span>
-                            <span
-                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Next.js</span>
-                            <span
-                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Redux</span>
-                            <span
-                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Tanstack</span>
-                            <span
-                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Node.js</span>
-                            <span
-                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Storybook</span>
-                            <span
-                                class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Nest.js</span>
-                            <span
-                                class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">HTML</span>
-                            <span
-                                class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">CSS/Sass</span>
-                            <span
-                                class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Material
-                                UI</span>
-                            <span
-                                class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">PostgreSQL</span>
-                            <span
-                                class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">AuroraDB</span>
-                            <span
-                                class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">MongoDB</span>
-                            <span
-                                class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Redis</span>
-                            <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">AWS (API
-                                Gateway, Elastic Beanstalk)</span>
-                            <span
-                                class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Docker</span>
-                            <span
-                                class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Git</span>
-                            <span
-                                class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Scrum</span>
-                            <span
-                                class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">JIRA</span>
-                        </div>
-                    </section>
+                        <!-- Certifications Section -->
+                        <section class="section">
+                            <h2>Certificaciones</h2>
+                            <ul class="certifications-list">
+                                <li>Oracle Cloud Infrastructure 2025 AI Foundations</li>
+                                <li>Scrum Developer Certification</li>
+                            </ul>
+                        </section>
+                    </aside>
 
-                    <!-- Work Experience -->
-                    <section class="mt-8">
-                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Experiencia
-                            Laboral</h3>
-                        <div class="space-y-8">
-                            <!-- Job 1 -->
-                            <div class="job-item">
-                                <div class="flex justify-between items-baseline">
-                                    <h4 class="text-lg font-bold text-gray-900">Frontend Developer</h4>
-                                    <p class="text-sm font-medium text-gray-600">Diciembre 2025 - Presente</p>
-                                </div>
-                                <p class="text-md font-semibold text-gray-700">Huenei IT Services</p>
-                                <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Mantenimiento y escalabilidad de 6 aplicaciones frontend + librería de
-                                        componentes compartida.</li>
-                                    <li>Desarrollo de nuevas funcionalidades con enfoque en arquitectura escalable y
-                                        reutilización de componentes.</li>
-                                    <li>Diseño, creación y refactorización de componentes en Storybook para garantizar
-                                        consistencia visual.</li>
-                                    <li>Gestión de estado con Zustand en aplicaciones React/TypeScript de alto
-                                        rendimiento.</li>
-                                </ul>
-                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React, TypeScript,
-                                    Storybook, StyledComponents, Tanstack, Zustand.</p>
-                            </div>
-                            <!-- Job 2 -->
-                            <div class="job-item">
-                                <div class="flex justify-between items-baseline">
-                                    <h4 class="text-lg font-bold text-gray-900">Full-Stack Developer</h4>
-                                    <p class="text-sm font-medium text-gray-600">Abril 2024 - Diciembre 2025</p>
-                                </div>
-                                <p class="text-md font-semibold text-gray-700">Ataway (para Cencosud S.A)</p>
-                                <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Mentoría activa y revisiones de código para desarrolladores Trainee, Junior y
-                                        Semi-Senior.</li>
-                                    <li>Análisis y definición de requerimientos funcionales y técnicos a nivel regional.
-                                    </li>
-                                    <li>Desarrollo end-to-end de funcionalidades, desde base de datos hasta la UI.</li>
-                                    <li>Configuración y optimización de endpoints en AWS API Gateway y gestión de rutas.
-                                    </li>
-                                    <li>Modernización y refactorización de módulos legacy para mejorar rendimiento y
-                                        mantenibilidad.</li>
-                                </ul>
-                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React, TypeScript,
-                                    Nest.js, Tanstack, Context API, AuroraDB, AWS, Sequelize.</p>
-                            </div>
-                            <!-- Job 3 -->
-                            <div class="job-item">
-                                <div class="flex justify-between items-baseline">
-                                    <h4 class="text-lg font-bold text-gray-900">Referente Técnico Full-Stack</h4>
-                                    <p class="text-sm font-medium text-gray-600">Agosto 2022 - Marzo 2024</p>
-                                </div>
-                                <p class="text-md font-semibold text-gray-700">ESolutions</p>
-                                <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Acompañamiento técnico del equipo, evaluación de tecnologías y desarrollo de
-                                        microservicios con Nest.js.</li>
-                                    <li>Personalización de productos para clientes clave como Movistar y Claro.</li>
-                                    <li>Definición de arquitectura, patrones de diseño e infraestructura para nuevos
-                                        proyectos.</li>
-                                    <li>Gestión de tareas y planificación de sprints utilizando JIRA.</li>
-                                    <li>Despliegue de aplicaciones en servidores WebLogic.</li>
-                                </ul>
-                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> Next.js, TypeScript,
-                                    React, Redux, Tanstack, Nest.js, MongoDB, Redis, PostgreSQL, Socket.io, Docker.</p>
-                            </div>
-                            <!-- Job 4 -->
-                            <div class="job-item">
-                                <div class="flex justify-between items-baseline">
-                                    <h4 class="text-lg font-bold text-gray-900">React Developer</h4>
-                                    <p class="text-sm font-medium text-gray-600">Febrero 2021 - Agosto 2022</p>
-                                </div>
-                                <p class="text-md font-semibold text-gray-700">Technisys S.A</p>
-                                <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Desarrollo de componentes reutilizables en Storybook y su integración en el
-                                        producto final.</li>
-                                    <li>Implementación de estilos responsivos, corrección de errores y creación de
-                                        pruebas unitarias.</li>
-                                    <li>Aplicación de la metodología Atomic Design en la construcción de un sistema de
-                                        diseño.</li>
-                                    <li>Colaboración activa mediante pair programming y revisiones de código.</li>
-                                </ul>
-                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React, TypeScript, Sass,
-                                    CSS Modules, Redux, Context API, Docker.</p>
-                            </div>
-                            <!-- Job 4 -->
-                            <div class="job-item">
-                                <div class="flex justify-between items-baseline">
-                                    <h4 class="text-lg font-bold text-gray-900">Full-Stack Developer</h4>
-                                    <p class="text-sm font-medium text-gray-600">Diciembre 2019 - Febrero 2021</p>
-                                </div>
-                                <p class="text-md font-semibold text-gray-700">CIDIA (Centro de Investigación de
-                                    Informática Aplicada)</p>
-                                <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Desarrollo de un proyecto universitario desde cero según especificaciones del
-                                        cliente.</li>
-                                    <li>Implementación de funcionalidades, diseños de escritorio y responsivos, y
-                                        consumo de APIs.</li>
-                                    <li>Colaboración en la construcción de endpoints y consultas a bases de datos
-                                        relacionales y no relacionales.</li>
-                                </ul>
-                                <p class="mt-2 text-xs text-gray-500"><strong>Stack:</strong> React.js, Node.js,
-                                    PostgreSQL, MongoDB, Sequelize, Materialize.</p>
-                            </div>
-                        </div>
-                    </section>
+                    <!-- Main content Column -->
+                    <main class="cv-main">
+                        <!-- Professional Summary -->
+                        <section class="section summary-section">
+                            <h2>Resumen Profesional</h2>
+                            <p>
+                                Desarrollador Frontend con más de 6 años de experiencia creando aplicaciones web escalables. Enfocado en el ecosistema JavaScript/TypeScript (React, Node.js, Nest.js) y en la construcción de arquitecturas de microservicios en la nube (AWS).
+                            </p>
+                        </section>
 
-                    <!-- Education -->
-                    <section class="mt-8">
-                        <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-4">Formación y
-                            Certificaciones</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <h4 class="text-lg font-bold text-gray-900">Tecnicatura Universitaria en Programación
-                                </h4>
-                                <div class="flex justify-between items-baseline">
-                                    <p class="text-md font-semibold text-gray-700">Universidad de Hurlingham (UNAHUR)
-                                    </p>
+                        <!-- Experience Section -->
+                        <section class="section">
+                            <h2>Experiencia Laboral</h2>
+                            <div class="experience-timeline">
+                                
+                                <!-- Job 1 -->
+                                <div class="job-card">
+                                    <div class="job-header">
+                                        <div class="job-title-group">
+                                            <h3>Frontend Developer <span class="client-tag">Cliente: GDM Seeds</span></h3>
+                                            <p class="company">Huenei IT Services</p>
+                                        </div>
+                                        <p class="job-date">Dic 2025 - Presente</p>
+                                    </div>
+                                    <ul class="job-details">
+                                        <li>Mantenimiento y escalabilidad de más de 6 aplicaciones frontend de biotecnología y una librería de componentes compartidos.</li>
+                                        <li>Desarrollo de una plataforma web integral para biotecnología agrícola orientada a la gestión de pruebas bioquímicas, ensayos de laboratorio y producción masiva de semillas.</li>
+                                        <li>Integración de flujos de hardware industriales (impresoras de códigos de barras, monitoreo automatizado de muestras y colecta de datos en tiempo real) para optimizar la operación de laboratorio.</li>
+                                        <li>Gestión de estado con Zustand en aplicaciones React/TypeScript de alto rendimiento y creación de componentes aislados en Storybook.</li>
+                                    </ul>
+                                    <p class="job-stack"><strong>Stack:</strong> React, TypeScript, Storybook, StyledComponents, Tanstack, Zustand</p>
                                 </div>
+
+                                <!-- Job 2 -->
+                                <div class="job-card">
+                                    <div class="job-header">
+                                        <div class="job-title-group">
+                                            <h3>Desarrollador Full-Stack</h3>
+                                            <p class="company">Ataway (para Cencosud S.A)</p>
+                                        </div>
+                                        <p class="job-date">Abr 2024 - Dic 2025</p>
+                                    </div>
+                                    <ul class="job-details">
+                                        <li>Mentoría activa y revisiones de código para desarrolladores Trainee, Junior y Semi-Senior.</li>
+                                        <li>Análisis y definición de requerimientos funcionales y técnicos a nivel regional.</li>
+                                        <li>Desarrollo end-to-end de funcionalidades, desde base de datos hasta la UI.</li>
+                                        <li>Configuración y optimización de endpoints en AWS API Gateway y gestión de rutas.</li>
+                                        <li>Modernización y refactorización de módulos legacy para mejorar rendimiento y mantenibilidad.</li>
+                                    </ul>
+                                    <p class="job-stack"><strong>Stack:</strong> React, TypeScript, Nest.js, Tanstack, Context API, AuroraDB, AWS, Sequelize</p>
+                                </div>
+
+                                <!-- Job 3 -->
+                                <div class="job-card">
+                                    <div class="job-header">
+                                        <div class="job-title-group">
+                                            <h3>Referente Técnico Full-Stack</h3>
+                                            <p class="company">ESolutions</p>
+                                        </div>
+                                        <p class="job-date">Ago 2022 - Mar 2024</p>
+                                    </div>
+                                    <ul class="job-details">
+                                        <li>Acompañamiento técnico del equipo, evaluación de tecnologías y desarrollo de microservicios con Nest.js.</li>
+                                        <li>Personalización de productos para clientes clave como Movistar y Claro.</li>
+                                        <li>Definición de arquitectura, patrones de diseño e infraestructura para nuevos proyectos.</li>
+                                        <li>Gestión de tareas y planificación de sprints utilizando JIRA.</li>
+                                        <li>Despliegue de aplicaciones en servidores WebLogic.</li>
+                                    </ul>
+                                    <p class="job-stack"><strong>Stack:</strong> Next.js, TypeScript, React, Redux, Tanstack, Nest.js, MongoDB, Redis, PostgreSQL, Socket.io, Docker</p>
+                                </div>
+
+                                <!-- Job 4 -->
+                                <div class="job-card">
+                                    <div class="job-header">
+                                        <div class="job-title-group">
+                                            <h3>Desarrollador React</h3>
+                                            <p class="company">Technisys S.A</p>
+                                        </div>
+                                        <p class="job-date">Febrero 2021 - Agosto 2022</p>
+                                    </div>
+                                    <ul class="job-details">
+                                        <li>Desarrollo de componentes reutilizables en Storybook y su integración en el producto final.</li>
+                                        <li>Implementación de estilos responsivos, corrección de errores y creación de pruebas unitarias.</li>
+                                        <li>Aplicación de la metodología Atomic Design en la construcción de un sistema de diseño.</li>
+                                        <li>Colaboración activa mediante pair programming y revisiones de código.</li>
+                                    </ul>
+                                    <p class="job-stack"><strong>Stack:</strong> React, TypeScript, Sass, CSS Modules, Redux, Context API, Docker</p>
+                                </div>
+
+                                <!-- Job 5 -->
+                                <div class="job-card">
+                                    <div class="job-header">
+                                        <div class="job-title-group">
+                                            <h3>Desarrollador Full-Stack</h3>
+                                            <p class="company">CIDIA (Centro de Investigación de Informática Aplicada)</p>
+                                        </div>
+                                        <p class="job-date">Dic 2019 - Febrero 2021</p>
+                                    </div>
+                                    <ul class="job-details">
+                                        <li>Desarrollo de un proyecto universitario desde cero según especificaciones del cliente.</li>
+                                        <li>Implementación de funcionalidades, diseños de escritorio y responsivos, y consumo de APIs.</li>
+                                        <li>Colaboración en la construcción de endpoints y consultas a bases de datos relacionales y no relacionales.</li>
+                                    </ul>
+                                    <p class="job-stack"><strong>Stack:</strong> React.js, Node.js, PostgreSQL, MongoDB, Sequelize, Materialize</p>
+                                </div>
+
                             </div>
-                            <div>
-                                <h4 class="text-lg font-bold text-gray-900">Certificaciones</h4>
-                                <ul class="list-disc list-outside ml-5 mt-2 space-y-1 text-gray-700">
-                                    <li>Oracle Cloud Infrastructure 2025 Certified AI Foundations</li>
-                                    <li>Scrum Developer Certification</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-                </main>
+                        </section>
+                    </main>
+                </div>
             </div>
+
         </div>
     </div>
 
+    <!-- Application Logic Script -->
     <script>
         (function () {
             var contentEn = document.getElementById('content-en');
             var contentEs = document.getElementById('content-es');
-            var langSelect = document.getElementById('lang-select');
             var btnLabel = document.getElementById('btn-download-label');
-
+            
+            // Set Language Function
             function setLanguage(lang) {
                 if (lang === 'es') {
                     contentEn.classList.add('hidden');
                     contentEs.classList.remove('hidden');
-                    if (btnLabel) btnLabel.textContent = 'Descargar CV';
+                    if (btnLabel) btnLabel.textContent = 'Descargar PDF';
+                    resetFilterButtons('content-es');
                 } else {
                     contentEs.classList.add('hidden');
                     contentEn.classList.remove('hidden');
-                    if (btnLabel) btnLabel.textContent = 'Download CV';
+                    if (btnLabel) btnLabel.textContent = 'Download PDF';
+                    resetFilterButtons('content-en');
                 }
+                localStorage.setItem('lang', lang);
             }
-
-            langSelect.addEventListener('change', function () {
-                setLanguage(this.value);
+            
+            // Language selector button listeners
+            var langBtns = document.querySelectorAll('.lang-toggle .toggle-btn');
+            langBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    langBtns.forEach(function (b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    setLanguage(btn.getAttribute('data-lang'));
+                });
+            });
+            
+            // Initial language loading
+            var initialLang = localStorage.getItem('lang') || 'en';
+            setLanguage(initialLang);
+            langBtns.forEach(function (btn) {
+                if (btn.getAttribute('data-lang') === initialLang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
             });
 
-            setLanguage('en');
+            // Theme selector logic (Light/Dark)
+            var themeToggle = document.getElementById('theme-toggle');
+            var initialTheme = localStorage.getItem('theme');
+            if (!initialTheme) {
+                initialTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', initialTheme);
+            
+            themeToggle.addEventListener('click', function () {
+                var currentTheme = document.documentElement.getAttribute('data-theme');
+                var newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
 
+            // Reset filter button helper
+            function resetFilterButtons(activeContentId) {
+                var activeContent = document.getElementById(activeContentId);
+                var filterBtns = activeContent.querySelectorAll('.filter-btn');
+                filterBtns.forEach(function (btn, idx) {
+                    if (idx === 0) btn.classList.add('active');
+                    else btn.classList.remove('active');
+                });
+                var badges = activeContent.querySelectorAll('.skill-badge');
+                badges.forEach(function (badge) {
+                    badge.classList.remove('skill-hidden');
+                });
+            }
+
+            // Skills category filter logic
+            var allFilterBtns = document.querySelectorAll('.filter-btn');
+            allFilterBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var parent = btn.parentElement;
+                    parent.querySelectorAll('.filter-btn').forEach(function (b) {
+                        b.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+                    
+                    var filterVal = btn.getAttribute('data-filter');
+                    var activeContentId = contentEn.classList.contains('hidden') ? 'content-es' : 'content-en';
+                    var activeContent = document.getElementById(activeContentId);
+                    var badges = activeContent.querySelectorAll('.skill-badge');
+                    
+                    badges.forEach(function (badge) {
+                        var cat = badge.getAttribute('data-category');
+                        if (filterVal === 'all' || cat === filterVal) {
+                            badge.classList.remove('skill-hidden');
+                        } else {
+                            badge.classList.add('skill-hidden');
+                        }
+                    });
+                });
+            });
+
+            // ATS compliant native print logic (PDF download trigger)
             document.getElementById('download-cv').addEventListener('click', function () {
-                var lang = langSelect.value;
-                var element = document.getElementById('cv-content');
-                var filename = lang === 'es' ? 'CV_Jonathan_Ybarra_ES.pdf' : 'CV_Jonathan_Ybarra_EN.pdf';
-
-                var opt = {
-                    margin: 0.5,
-                    filename: filename,
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true },
-                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-                };
-
-                html2pdf().from(element).set(opt).save();
+                var activeContentId = contentEn.classList.contains('hidden') ? 'content-es' : 'content-en';
+                var originalTitle = document.title;
+                var filename = activeContentId === 'content-es' ? 'CV_Jonathan_Ybarra_ES' : 'CV_Jonathan_Ybarra_EN';
+                
+                // Temporarily override document title to set download filename
+                document.title = filename;
+                
+                window.print();
+                
+                // Restore original title
+                setTimeout(function () {
+                    document.title = originalTitle;
+                }, 1000);
             });
         })();
     </script>
